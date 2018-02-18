@@ -55,11 +55,11 @@ class CylinderStack : public Cylinder {
       for( auto v : cylinders){
         for( int i = 0; i < v.getHeight(); i++){
           if( v.getHeight() > 1 ){
-            if( i == 0 ) std::cout << "[";
-            else if( i == v.getHeight()-1 ) std::cout << "]";
-            else std::cout << "-";
+            if( i == 0 ) std::cout << "▐";
+            else if( i == v.getHeight()-1 ) std::cout << "▌";
+            else std::cout << "█";
           } else {
-            std::cout << "-";
+            std::cout << "|";
           }
         }
       }
@@ -74,9 +74,9 @@ class CylinderStack : public Cylinder {
     ~CylinderStack();
 };
 
-CylinderStack::CylinderStack() : 
+CylinderStack::CylinderStack() :
   Cylinder(){
-  this->numberCylinders = 0;  
+  this->numberCylinders = 0;
 }
 CylinderStack::~CylinderStack(){}
 
@@ -85,28 +85,28 @@ void removeTop(CylinderStack* s){
 }
 
 void makeStacksEqualHeight(CylinderStack* s1, CylinderStack* s2, CylinderStack* s3){
-  
+
   while(s1->getStackHeight() != s2->getStackHeight() &&
         s1->getStackHeight() != s3->getStackHeight()){
-    
+
     if(s1->getTopCylinderHeight() < s2->getTopCylinderHeight() &&
        s1->getTopCylinderHeight() < s3->getTopCylinderHeight()){
-      removeTop(s1);  
+      removeTop(s1);
     }
     else if(s2->getTopCylinderHeight() < s1->getTopCylinderHeight() &&
        s2->getTopCylinderHeight() < s3->getTopCylinderHeight()){
-      removeTop(s2);  
+      removeTop(s2);
     } else removeTop(s3);
     //else if(s3->getTopCylinderHeight() < s1->getTopCylinderHeight() &&
     //   s3->getTopCylinderHeight() < s2->getTopCylinderHeight()){
-    //  removeTop(s3);  
+    //  removeTop(s3);
     //}
-   
-    std::cin.get(); 
-    s1->drawCylinderStack(); 
-    s2->drawCylinderStack(); 
-    s3->drawCylinderStack(); 
-  } 
+
+    std::cin.get();
+    s1->drawCylinderStack();
+    s2->drawCylinderStack();
+    s3->drawCylinderStack();
+  }
 
 
 }
@@ -115,7 +115,7 @@ int main(){
   CylinderStack* STACK_ONE = new CylinderStack();
   CylinderStack* STACK_TWO = new CylinderStack();
   CylinderStack* STACK_THREE = new CylinderStack();
-  
+
   int cylHeight;
   int numCyls = 5;
   srand (time(NULL)); // initialize random seed
@@ -135,8 +135,8 @@ int main(){
 
   //while(STACK_ONE->getStackHeight() != STACK_TWO->getStackHeight() &&
   //      STACK_ONE->getStackHeight() != STACK_THREE->getStackHeight()){
-  //  
-  //} 
+  //
+  //}
   makeStacksEqualHeight(STACK_ONE,STACK_TWO,STACK_THREE);
   delete STACK_ONE;
   delete STACK_TWO;
@@ -148,6 +148,6 @@ int main(){
 /*
 You have three stacks of cylinders where each cylinder has the same diameter, but they may vary in height. You can change the height of a stack by removing and discarding its topmost cylinder any number of times.
 
-Find the maximum possible height of the stacks such that all of the stacks are exactly the same height. This means you must remove zero or more cylinders from the top of zero or more of the three stacks until they're all the same height, then print the height. The removals must be performed in such a way as to maximize the height. 
+Find the maximum possible height of the stacks such that all of the stacks are exactly the same height. This means you must remove zero or more cylinders from the top of zero or more of the three stacks until they're all the same height, then print the height. The removals must be performed in such a way as to maximize the height.
 */
 
